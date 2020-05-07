@@ -9,10 +9,11 @@ def home(request):
 
 # How to handle file upload without model forms
 def upload(request):
-    # Files are sent using POST request
+    # Files must be sent using POST request
     if request.method == 'POST':  
-        # Files uploaded are dictionary-like object and the key must be
-        # 'name of the file' input that was added in html i.e document
+        ''' Files uploaded are dictionary-like object and the key must be
+        *name of the file input* that was added in html i.e document '''
+
         uploaded_file= request.FILES['document'] 
         # print(uploaded_file.name)
         # print(uploaded_file.size)
@@ -23,12 +24,12 @@ def upload(request):
         # Each file uploaded as dictionary are going to be UploadedFile instance
         name=file.save(uploaded_file.name,uploaded_file)
 
-    #     url =file.url(name)
+        url =file.url(name)
+    
 
     # context={
     #     'url' : url
     # }
-    return render(request,'books/upload.html')
 
 def book_list(request):
     context = {
@@ -45,6 +46,7 @@ def upload_book(request):
             return redirect('book-list')
     else:
         form=BookForm()
+        
     context={
         'form':form
     }
