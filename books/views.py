@@ -31,6 +31,8 @@ def upload(request):
     #     'url' : url
     # }
 
+    return render(request,'books/upload.html')
+
 def book_list(request):
     context = {
         'books':Book.objects.all()
